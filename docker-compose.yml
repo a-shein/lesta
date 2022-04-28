@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: lesta_php
+        tty: true
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+        networks:
+            - app-network
+
+    nginx:
+        image: nginx:alpine
+        container_name: lesta_nginx
+        tty: true
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - .:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-network
+
+    redis:
+        image: redis:7.0.0-alpine
+        container_name: lesta_redis
+        tty: true
+        ports:
+            - "6379:6379"
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
