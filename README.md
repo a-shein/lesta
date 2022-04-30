@@ -1,5 +1,7 @@
 ### УСТАНОВКА
 
+* склонировать проект git clone git@github.com:ovod93/lesta.git
+
 ### Последовательно запустить команды в директории /lesta
 
 * ```make compose-build``` сборка приложения
