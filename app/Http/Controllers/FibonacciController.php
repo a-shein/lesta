@@ -8,6 +8,11 @@ use Illuminate\Contracts\View\View;
 
 class FibonacciController extends Controller
 {
+    /**
+     * @param GetFibonacciRequest $request
+     * @param FibonacciService $fibonacciService
+     * @return View
+     */
     public function getFibonacci(GetFibonacciRequest $request, FibonacciService $fibonacciService): View
     {
         $request->validated();
