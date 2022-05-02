@@ -11,3 +11,6 @@ init:
 	docker-compose exec app composer install
 	docker-compose exec app cp .env.example .env
 	docker-compose exec app php artisan key:generate
+
+test:
+	docker-compose exec app bash -c "./vendor/bin/phpunit"
