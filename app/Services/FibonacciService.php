@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use Predis\Client;
+use Predis\ClientInterface;
 
 class FibonacciService
 {
-    private const REDIS_KEY = 'fibonacci';
+    public const REDIS_KEY = 'fibonacci';
 
-    public function __construct(private Client $redis)
+    public function __construct(private ClientInterface $redis)
     {
     }
 
@@ -44,7 +44,7 @@ class FibonacciService
      * @param array $list
      * @return array
      */
-    private function getFibonacciListInRange(int $from, int $to, array $list): array
+    protected function getFibonacciListInRange(int $from, int $to, array $list): array
     {
         return array_filter($list, fn (int $value) => $from <= $value && $value <= $to);
     }
@@ -56,7 +56,7 @@ class FibonacciService
      * @param array|null $data
      * @return array<int>
      */
-    private function calculateFibonacciList(int $to, ?array $data = null): array
+    protected function calculateFibonacciList(int $to, ?array $data = null): array
     {
         if ($to === 0) {
             return [0];

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Predis\Client;
+use Predis\ClientInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Client::class, function (): Client {
+        $this->app->bind(ClientInterface::class, function (): Client {
             $config = config('database.redis.default');
             return new Client($config);
         });

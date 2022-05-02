@@ -25,7 +25,7 @@ class GetFibonacciRequest extends FormRequest
     {
         return [
             'from' => 'numeric|min:0',
-            'to' => 'numeric|gte:from',
+            'to' => 'requiredWith:from|numeric|gte:from',
         ];
     }
 }
